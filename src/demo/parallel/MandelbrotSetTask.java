@@ -331,25 +331,23 @@ class MandelbrotSetTask extends Task<Long> {
     static final Color[] colors = new Color[256];
 
     static {
-
-        /**
-         * Color stops for colors table: color values
-         */
+        // НОВАЯ ЦВЕТОВАЯ ПАЛИТРА - сине-зеленая гамма
         Color[] cc = {
-                Color.rgb(40, 0, 0),
-                Color.RED,
-                Color.WHITE,
-                Color.RED,
-                Color.rgb(100, 0, 0),
-                Color.RED,
-                Color.rgb(50, 0, 0)
+                Color.rgb(0, 0, 40),        // Темно-синий
+                Color.CYAN,                 // Бирюзовый
+                Color.WHITE,                // Белый
+                Color.LIMEGREEN,           // Лаймово-зеленый
+                Color.rgb(0, 100, 100),     // Темный циан
+                Color.DARKTURQUOISE,       // Темный бирюзовый
+                Color.rgb(0, 50, 50)        // Очень темный сине-зеленый
         };
 
         /**
          * Color stops for colors table: relative position in the table
          */
         double[] cp = {
-                0, 0.17, 0.25, 0.30, 0.5, 0.75, 1,};
+                0, 0.17, 0.25, 0.30, 0.5, 0.75, 1,
+        };
 
         /**
          * Color table population
