@@ -53,7 +53,7 @@ public class Complex {
      * create a new object with the given real and imaginary parts
      *
      * @param real a complex number real part
-     * @param imag a complex number imaginary part 
+     * @param imag a complex number imaginary part
      */
     public Complex(double real, double imag) {
         re = real;
@@ -85,8 +85,80 @@ public class Complex {
         return this;
     }
 
+    public Complex minus(Complex b) {
+        re -= b.re;
+        im -= b.im;
+        return this;
+    }
+
+    public Complex divide(Complex b) {
+        double denominator = b.re * b.re + b.im * b.im;
+        double real = (this.re * b.re + this.im * b.im) / denominator;
+        double imag = (this.im * b.re - this.re * b.im) / denominator;
+        re = real;
+        im = imag;
+        return this;
+    }
+
+    public Complex power(int n) {
+        if (n == 0) {
+            re = 1;
+            im = 0;
+            return this;
+        }
+
+        Complex result = new Complex(re, im);
+        for (int i = 1; i < n; i++) {
+            result = result.times(new Complex(re, im));
+        }
+        re = result.re;
+        im = result.im;
+        return this;
+    }
+
+    public Complex exp() {
+        double expRe = Math.exp(re);
+        double newRe = expRe * Math.cos(im);
+        double newIm = expRe * Math.sin(im);
+        re = newRe;
+        im = newIm;
+        return this;
+    }
+
+    public Complex log() {
+        double newRe = Math.log(Math.sqrt(re * re + im * im));
+        double newIm = Math.atan2(im, re);
+        re = newRe;
+        im = newIm;
+        return this;
+    }
+
+    public Complex sin() {
+        double newRe = Math.sin(re) * Math.cosh(im);
+        double newIm = Math.cos(re) * Math.sinh(im);
+        re = newRe;
+        im = newIm;
+        return this;
+    }
+
+    public Complex cos() {
+        double newRe = Math.cos(re) * Math.cosh(im);
+        double newIm = -Math.sin(re) * Math.sinh(im);
+        re = newRe;
+        im = newIm;
+        return this;
+    }
+
+    public double abs() {
+        return Math.sqrt(re * re + im * im);
+    }
+
+    public Complex copy() {
+        return new Complex(re, im);
+    }
+
     /**
-     * Square of Complex object's length, we're using square of length to 
+     * Square of Complex object's length, we're using square of length to
      * eliminate the computation of square root
      * @return square of length
      */
